@@ -1,7 +1,5 @@
 {
   "name": "deepflow",
-  "private": true,
-  "homepage": "https://sourenakhanzadeh.github.io/DeepFlow/",
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
