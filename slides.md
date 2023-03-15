@@ -1,4 +1,5 @@
 ---
+title: DeepFlow
 # try also 'default' to start simple
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
@@ -23,6 +24,7 @@ drawings:
 transition: slide-left
 # use UnoCSS
 css: unocss
+hideInToc: true
 ---
 
 ## DeepFlow: Deep Learning-Based Malware Detection by Mining Android Application for Abnormal Usage of Sensitive Data
@@ -55,22 +57,24 @@ The last comment block of each slide will be treated as slide notes. It will be 
 transition: fade-out
 ---
 
-# What is Slidev?
+# Table of Contents
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+Here is the summary and structure of the presentation.
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
+- 📝 Abstract
+- 🎥 Introduction
+- 📖 Background
+- 📚 Literature Review **(Not Provided)**
+- 📊 Methodology
+- 📉 Evaluation
+- 🔚 Conclusion
 
 <br>
 <br>
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
+Visit the presentation https://sourenakhanzadeh.github.io/DeepFlow/
+
+Read more about [Paper.](https://github.com/sourenaKhanzadeh/DeepFlow)
 
 <!--
 You can have `style` tag in markdown to override the style for the current page.
@@ -90,61 +94,48 @@ h1 {
 </style>
 
 <!--
-Here is another comment.
+Itroduce the project presentation
 -->
 
 ---
 transition: slide-up
 ---
 
-# Navigation
+# Abstract
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
+Short summary of the paper.
 
-### Keyboard Shortcuts
+### Keywords: <kbd>key</kbd>
 
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
+The open nature of Android allows application developers to take full advantage of the system. While the flexibility is brought to developers and users, it may raise significant issues related to malicious applications. Traditional malware detection approaches based on signatures or abnormal behaviors are invalid when dealing with novel malware. To solve the problem, machine learning algorithms are used to learn the distinctions between malware and benign apps automatically. Deep learning, as a new area of machine learning, is developing rapidly as its better characterization of samples. We thus propose <kbd>DeepFlow</kbd>, a novel deep learning-based approach for identifying malware directly from the data flows in the Android application. We test <kbd>DeepFlow</kbd> on thousands of <kbd>benignware</kbd> and <kbd>malware</kbd>. The results show that <kbd>DeepFlow</kbd> can achieve a high detection <kbd>F1</kbd> score of 95.05%, outperforming traditional machine learning-based approaches, which reveals the advantage of deep learning technique in malware detection.
 
 <!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
+<!-- <img
   v-click
   class="absolute -bottom-9 -left-7 w-80 opacity-50"
   src="https://sli.dev/assets/arrow-bottom-left.svg"
 />
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p> -->
 
 ---
 layout: image-right
 image: https://source.unsplash.com/collection/94734566/1920x1080
 ---
 
-# Code
+# Introduction
+What is the problem?
 
-Use code snippets and get the highlighting directly![^1]
+<small>
+  <ul>
+    <li>Android devices have seen a rapid increase in popularity, with over 1.6 billion shipments in 2016 (Gartner, 2016).</li>
+    <li>This popularity has led to the development of a vast Android application market with millions of apps available for download.</li>
+    <li>However, due to the open nature of the Android platform, these markets are vulnerable to malware attacks (Sensor Tower, 2016).</li>
+    <li>Malicious apps treat sensitive data differently from benign apps and can steal sensitive data, making it important to detect such apps.</li>
+    <li>Previous approaches such as dynamic taint analysis have proven to be ineffective in detecting all sensitive data flows.</li>
+  </ul>
+</small>
 
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
 
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = { ...user, ...update }
-  saveUser(id, newUser)
-}
-```
-
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
-
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
 
 <style>
 .footnotes-sep {
@@ -157,6 +148,101 @@ function updateUser(id: number, update: User) {
   display: none;
 }
 </style>
+
+---
+layout: image-left
+image: https://source.unsplash.com/collection/94734566/1920x1080
+transition: slide-up
+---
+# Introduction (cont.)
+What is the solution?
+
+<small>
+  <ul>
+    <li>Introducing <kbd>DeepFlow</kbd> a new Android malware detection tool that utilizes deep learning algorithms to detect and classify malware apps based on their data flow features.</li>
+    <li>
+      Deep learning algorithms can model high-level abstractions in data by using a deep graph with multiple processing layers.
+    </li>
+    <li>
+      DeepFlow uses <kbd>FlowDroid</kbd> to extract data flows from thousands of benign and malicious apps and then applies <kbd>SUSI</kbd> technique to transform the feature granularity from method level to category level.
+    </li>
+    <li>
+    A deep learning model is constructed using the extracted data flow features to automatically flag apps with suspicious data flow features.
+    </li>
+  </ul>
+</small>
+
+---
+transition: slide-up
+layout: two-cols
+---
+
+# Background
+
+Taint Analysis
+
+1. Sensitive Source (Source of user's sensitive information)
+  ```java
+  String phoneNumber = getPhoneNumber();
+  ```
+2. Taint Analysis (Track sensitive data throughout the code)
+  ```java
+  String message = "Phone Number: " + phoneNumber;
+  String modifiedMessage = message + ", info.";
+  ```
+3. Sensitive Sink (Potential data leak point)
+  ```java
+  sendTextMessage(phoneNumber, modifiedMessage);
+  ```
+
+::right::
+
+```mermaid
+graph TB
+    A["Source: getPhoneNumber()"]
+    B["Assign: phoneNumber"]
+    C["Concat: message"]
+    D["Concat: modifiedMessage"]
+    E["Sink: sendTextMessage"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+```
+
+---
+transition: slide-down
+---
+
+# Background (cont.)
+Deep Learning
+
+- Deep learning is a subset of machine learning that models high-level abstractions in data.
+- It uses multiple processing layers with linear and non-linear transformations.
+
+```python{all|1-4|6-13|15-19|all}
+def initialize_network(input_size, hidden_size, output_size):
+    network = create_network_structure(input_size, hidden_size, output_size)
+    initialize_weights(network)
+    return network
+
+def train_network(network, training_data, learning_rate, epochs):
+    for epoch in range(epochs):
+        for data, target in training_data:
+            input = preprocess_data(data)
+            output = forward_pass(network, input)
+            loss = calculate_loss(output, target)
+            gradients = backpropagate(network, loss)
+            update_weights(network, gradients, learning_rate)
+
+def predict(network, input_data):
+    input = preprocess_data(input_data)
+    output = forward_pass(network, input)
+    prediction = interpret_output(output)
+    return prediction
+```
+
 
 ---
 
