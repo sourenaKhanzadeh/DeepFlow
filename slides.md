@@ -242,8 +242,102 @@ def predict(network, input_data):
     prediction = interpret_output(output)
     return prediction
 ```
+---
+transition: slide-right
+---
+# Background (cont.)
+Traditional Approaches
+
+- Require manual feature engineering.
+- Often less accurate with large datasets.
+- May struggle with unstructured data.
+
+```python{all|1-3|5-9|11-14|all}
+def preprocess_data(data):
+    engineered_features = extract_manual_features(data)
+    return engineered_features
+
+def train_model(training_data, model_type, model_params):
+    model = create_model(model_type, model_params)
+    features, targets = separate_features_and_targets(training_data)
+    model.fit(features, targets)
+    return model
+
+def predict(model, input_data):
+    input_features = preprocess_data(input_data)
+    prediction = model.predict(input_features)
+    return prediction
+
+```
+---
+transition: slide-left
+---
+
+# Background (cont.)
+Deep Learning vs Traditional Approaches
+
+<table class="small-font" style="width: 100%;height:250px;font-size:small">
+  <tr>
+    <th>Feature</th>
+    <th>Traditional Approaches</th>
+    <th>Deep Learning</th>
+  </tr>
+  <tr>
+    <td>Feature Engineering</td>
+    <td>Manual</td>
+    <td>Automatic</td>
+  </tr>
+  <tr>
+    <td>Performance with Large Datasets</td>
+    <td>Often Less Accurate</td>
+    <td>More Accurate</td>
+  </tr>
+  <tr>
+    <td>Handling Unstructured Data</td>
+    <td>May Struggle</td>
+    <td>Better</td>
+  </tr>
+  <tr>
+    <td>Model Complexity</td>
+    <td>Generally Simpler</td>
+    <td>More Complex (multiple layers)</td>
+  </tr>
+  <tr>
+    <td>Training Time</td>
+    <td>Often Faster</td>
+    <td>Can be Slower (depends on model)</td>
+  </tr>
+  <tr>
+    <td>Interpretability</td>
+    <td>Generally More Interpretable</td>
+    <td>Less Interpretable</td>
+  </tr>
+  <tr>
+    <td>Applicability to Various Domains</td>
+    <td>Domain-specific Feature Engineering</td>
+    <td>More Adaptable to Different Domains</td>
+  </tr>
+</table>
 
 
+<style>
+.small-font {
+  font-size: small;
+}
+table {
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
 ---
 
 # Components
