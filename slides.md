@@ -149,6 +149,14 @@ What is the problem?
 }
 </style>
 
+<!-- 
+  Begin by mentioning the rapid increase in popularity of Android devices, with over 1.6 billion shipments in 2016 (Gartner, 2016). Explain that this has resulted in a vast Android application market with millions of apps available for download.
+
+Highlight the vulnerability of Android markets to malware attacks due to the open nature of the platform (Sensor Tower, 2016). Emphasize that malicious apps treat sensitive data differently from benign apps and can steal sensitive data, making it essential to detect such apps.
+
+Discuss the limitations of previous approaches like dynamic taint analysis, which have proven to be ineffective in detecting all sensitive data flows. This sets the stage for the need for a more effective method to detect malicious apps and protect sensitive data.
+ -->
+
 ---
 layout: image-left
 image: https://source.unsplash.com/collection/94734566/1920x1080
@@ -171,6 +179,16 @@ What is the solution?
     </li>
   </ul>
 </small>
+
+<!-- 
+1. Begin by introducing DeepFlow, a new Android malware detection tool that utilizes deep learning algorithms to detect and classify malware apps based on their data flow features.
+
+2. Explain that deep learning algorithms can model high-level abstractions in data by using a deep graph with multiple processing layers, making them effective in identifying malware patterns.
+
+3. Describe the process DeepFlow follows: using FlowDroid to extract data flows from thousands of benign and malicious apps, and then applying the SUSI technique to transform the feature granularity from method level to category level.
+
+4. Conclude by emphasizing that a deep learning model is constructed using the extracted data flow features, which allows DeepFlow to automatically flag apps with suspicious data flow features and improve the detection of malicious apps.
+ -->
 
 ---
 transition: slide-up
@@ -210,7 +228,19 @@ graph TB
     C --> D
     D --> E
 ```
+<!-- 
+we will discuss the concept of Taint Analysis, which is essential in understanding how DeepFlow detects sensitive data flows in Android apps.
 
+Taint Analysis can be divided into three main steps:
+
+1. Sensitive Source: This is where the user's sensitive information is obtained. In the example on the slide, we can see that the phone number is retrieved using the getPhoneNumber() method.
+
+2. Taint Analysis: This step involves tracking the sensitive data as it moves through the code. In our example, we can see that the phone number is concatenated with a message and then further modified.
+
+3. Sensitive Sink: This is the point where the sensitive data might be leaked. In our example, the sendTextMessage method represents a potential data leak point, as it sends the modified message containing the phone number.
+
+On the right side of the slide, you can see a visual representation of the data flow using a Mermaid diagram. It shows the flow of sensitive information from the source to the sink, passing through various stages of modification and concatenation. This flow is what DeepFlow analyzes to detect malicious apps based on their data flow features.
+ -->
 ---
 transition: slide-down
 ---
@@ -242,6 +272,22 @@ def predict(network, input_data):
     prediction = interpret_output(output)
     return prediction
 ```
+
+<!-- 
+In this slide, we are introducing the concept of deep learning, which is the foundation for the DeepFlow malware detection tool.
+
+Deep learning is a subfield of machine learning that focuses on modeling high-level abstractions in data. It achieves this by using multiple processing layers with linear and non-linear transformations.
+
+The Python code snippet shown on the slide outlines the basic structure of a deep learning model:
+
+1. First, we initialize the network with the initialize_network function. This function takes the input size, hidden size, and output size as arguments and creates a network structure with initialized weights.
+
+2. Next, we train the network using the train_network function. This function iteratively processes the training data, performing forward passes through the network and calculating the loss. It then backpropagates the error and updates the weights based on the gradients and learning rate.
+
+3. Finally, we use the predict function to make predictions on input data. The input data is preprocessed, passed through the network using a forward pass, and the output is interpreted to produce a prediction.
+
+Deep learning, as used in DeepFlow, allows for the automatic detection and classification of Android malware based on their data flow features. This advanced technique provides a more accurate and efficient solution compared to traditional methods.
+ -->
 ---
 transition: slide-right
 ---
@@ -269,6 +315,29 @@ def predict(model, input_data):
     return prediction
 
 ```
+
+<!-- 
+In this slide, we are discussing the limitations of traditional approaches to malware detection and classification, which contrasts with the deep learning method used in DeepFlow.
+
+Traditional approaches to machine learning typically have several shortcomings:
+
+1. They require manual feature engineering, which involves the labor-intensive process of manually extracting and selecting features from the data. This can be time-consuming and often requires domain expertise.
+
+2. Traditional approaches are often less accurate when dealing with large datasets. As the amount of data increases, the performance of these models may not scale as effectively as deep learning models, which can handle large and complex datasets more efficiently.
+
+3. Traditional models may struggle with unstructured data. They often require structured input data and may have difficulty processing and extracting meaningful information from unstructured data sources, such as text or images.
+
+The Python code snippet shown on the slide illustrates a typical workflow for a traditional machine learning model:
+
+1. The preprocess_data function extracts manually engineered features from the data.
+
+2. The train_model function creates a model based on the specified model type and parameters, and trains it using the training data.
+
+3. The predict function processes the input data and generates a prediction using the trained model.
+
+In contrast, DeepFlow's deep learning approach automates feature extraction, can handle large and complex datasets, and is more adept at dealing with unstructured data.
+ -->
+
 ---
 transition: slide-left
 ---
@@ -386,6 +455,29 @@ Advantages of DBN:
   font-size: 0.2rem;
 }
 </style>
+
+<!-- 
+In this slide, we are discussing how Deep Belief Networks (DBN), a type of deep neural network, can be used for malware detection.
+
+DBNs consist of multiple layers of latent variables or hidden units called Restricted Boltzmann Machines (RBM). These layers are connected to each other, but not to units within the same layer. The DBN learning process involves two main stages:
+
+1. Unsupervised Learning:
+- In this stage, the DBN learns to probabilistically reconstruct input feature vectors, capturing high-level representations that evolve through the layers.
+- The error between the input and reconstructed vectors is minimized, allowing the model to create an efficient representation of the data.
+
+2. Supervised Learning:
+- Once the unsupervised learning stage is complete, labeled app samples are used for classification.
+- The model uses backpropagation for fine-tuning and improving accuracy by adjusting weights based on the error between predicted and actual labels.
+There are several advantages to using DBNs for malware detection:
+
+DBNs can capture complex and abstract relationships in the data, allowing them to recognize patterns that may not be apparent using traditional approaches.
+
+- They can detect novel malware by identifying differences from benign apps and similarities with known malicious apps. This enables them to generalize from known threats to detect previously unseen malware.
+- DBNs can continuously adapt to emerging threats with ongoing training, ensuring that the model remains effective as new malware variants are developed.
+
+By using DBNs, DeepFlow is able to provide a robust and adaptable solution for detecting and classifying Android malware, outperforming traditional machine learning approaches.
+ -->
+
 
 ---
 transition: slide-up
