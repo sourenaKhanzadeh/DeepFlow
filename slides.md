@@ -409,8 +409,6 @@ tr:nth-child(even) {
 </style>
 
 ---
-layout: image-right
-image: '/imgs/fig3.png'
 transition: slide-up
 ---
 
@@ -442,6 +440,8 @@ Advantages of DBN:
 
 </div>
 
+<img src="imgs/fig3.png">
+
 <style>
 .main {
   float: left;
@@ -453,6 +453,10 @@ Advantages of DBN:
   padding-left: 10px;
   width: 50%;
   font-size: 0.2rem;
+}
+img {
+  width: 50%;
+  height: 50%;
 }
 </style>
 
