@@ -415,6 +415,7 @@ transition: slide-up
 # Background (cont.)
 Deep Belief Networks (DBN) for Malware Detection
 
+<Transform :scale="0.5">
 <div class="main">
 Deep Belief Networks (DBN) are a type of deep neural network that consist of multiple layers of latent variables or hidden units called Restricted Boltzmann Machines (RBM). These layers are connected to each other but not to units within the same layer.
 
@@ -440,23 +441,17 @@ Advantages of DBN:
 
 </div>
 
-<img src="imgs/fig3.png">
+</Transform>
+
+<img src="/imgs/fig3.png">
 
 <style>
-.main {
-  float: left;
-  width: 50%;
-  font-size: 0.2rem;
-}
-.second {
-  float: right;
-  padding-left: 10px;
-  width: 50%;
-  font-size: 0.2rem;
-}
-img {
-  width: 50%;
-  height: 50%;
+img{
+  position: absolute;
+  top:0;
+  right:0;
+  width:400px;
+  height:400px;
 }
 </style>
 
