@@ -338,9 +338,59 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 </style>
+
+---
+layout: image-right
+image: '/imgs/fig3.png'
+transition: slide-up
+---
+
+# Background (cont.)
+Deep Belief Networks (DBN) for Malware Detection
+
+<div class="main">
+Deep Belief Networks (DBN) are a type of deep neural network that consist of multiple layers of latent variables or hidden units called Restricted Boltzmann Machines (RBM). These layers are connected to each other but not to units within the same layer.
+
+1. Unsupervised Learning:
+
+  - DBN learns to probabilistically reconstruct input feature vectors
+  - High-level representations evolve through the layers
+  - Error between input and reconstructed vectors is minimized
+</div>
+
+<div class="second">
+
+2. Supervised Learning:
+
+  - Labeled app samples are used for classification
+  - Backpropagation for fine-tuning and improving accuracy
+
+Advantages of DBN:
+
+- Captures complex and abstract relationships in data
+- Can detect novel malware based on differences from benign apps and similarities with known malicious apps
+- Continuously adapts to emerging threats with ongoing training
+
+</div>
+
+<style>
+.main {
+  float: left;
+  width: 50%;
+  font-size: 0.2rem;
+}
+.second {
+  float: right;
+  padding-left: 10px;
+  width: 50%;
+  font-size: 0.2rem;
+}
+</style>
+
 ---
 transition: slide-up
 ---
+
 # Literature Review 
 Motivation
 
